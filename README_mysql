@@ -1,0 +1,23 @@
+查看表创建语句
+SHOW CREATE TABLE ${tableName}
+
+查看数据库表
+SELECT
+	table_name
+FROM
+	information_schema. TABLES
+WHERE
+	table_schema = upper('${dataName}')
+AND table_type = 'BASE TABLE';
+
+
+添加表注释
+ALTER TABLE ${tableName} COMMENT '${tableComment})'
+查看表注释
+SELECT
+	*
+FROM
+	information_schema.TABLES
+WHERE
+	TABLE_SCHEMA = '${databaseName}'
+AND TABLE_NAME = UPPER('${tableName}')

@@ -1,0 +1,12 @@
+.phaseChoosed {
+	font-size: 44px;
+	border:1px solid #000
+}
+.operateSrcComposition{
+	
+	background: yellow; 
+}
+.operateDstComposition{
+	
+	background: blue; 
+}

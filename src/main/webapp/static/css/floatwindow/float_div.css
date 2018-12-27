@@ -1,0 +1,41 @@
+.float_title {
+	background-color: #0066FF;
+	text-align: center;
+	font-weight: 900;
+}
+
+.uploadInput {
+	opacity: 100;
+	filter: alpha(opacity = 100);
+	cursor: pointer;
+	height: 20px;
+	line-height: 20px;
+	position: relative;
+	background: #fafafa;
+	border: 1px solid #ddd;
+	overflow: hidden;
+	display: inline-block;
+	color: #444;
+	background: #eee;
+	border-color: #ccc;
+	text-decoration: none
+}
+
+.float_area>div {
+	width: 100%;
+	display: table;
+}
+
+.float_area>div>div {
+	width: 100%;
+	display: table-row;
+}
+
+.small_title {
+	background-color: #ADFF2F;
+}
+
+.articleListMouseOn {
+	background-color: #BBB;
+	border: 1px solid #ddd;
+}

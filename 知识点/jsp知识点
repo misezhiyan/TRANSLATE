@@ -1,0 +1,18 @@
+<JSP:include page="dae.JSP" flush="true"/>
+      作用：include动作元素是在请求处理阶段执行的(此处要对请求处理阶段进行说明一下.JSP容器除了上面提到的负责将JSP页面转化成servlet外,还负责调用JSP页面实现类以处理每个请求并产生应答.这个阶段我们就称为请求处理阶段.请求处理阶段仅执行类文件)。
+所以在我们作include动作元素引入页面时,实际只是引用了date.JSP这个文件被转化并被编译后产生的servlet类文件。
+
+<c:import>
+除了分配参数并管理本地文件内容以外， c:import 还可以引入外部站点的内容。使用 c:import 的真正优势在于，它可以引入外部Web站点的内容或Web应用程序。在前面学习jsp:includes时，您可能已经注意到，我们使用file（文件）属性来为include指定静态内容。file（文件）属性正如其名称所示：使您可以引入本地文件的内容。 c:import 的相应属性为 url ，它也正如其名称所示：使您能够引入任何URL。 c:import 不仅可以使用本地文件的内容来填充您的站点网页，而且还允许您引入任何URL的内容，使其它站点的内容可以真正灵活地适应您自己站点的外观和风格
+
+
+获取页面某一元素的绝对X,Y坐标
+var X = $('#DivID').offset().top;
+var Y = $('#DivID').offset().left;
+获取相对(父元素)位置:
+var X = $('#DivID').position().top;
+var Y = $('#DivID').position().left;
+
+
+div 获取光标位置
+https://www.jb51.net/article/57650.htm

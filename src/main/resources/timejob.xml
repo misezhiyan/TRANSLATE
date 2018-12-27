@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 线程执行器配置，用于任务注册 -->
+	<bean id="executor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="10" />
+		<property name="maxPoolSize" value="30" />
+		<property name="queueCapacity" value="500" />
+	</bean>
+	<!-- 业务对象 -->
+	<!-- ExpireJobTask是类名，doBiz是执行的实际方法 -->
+	<bean id="bizObject" class="com.dTs.time.dTsTimerJob">
+		<property name="dTsTimerJobService" ref="dTsTimerJobService" />
+	</bean>
+	<!-- 调度业务 -->
+	<bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="bizObject" />
+		<property name="targetMethod" value="doBiz" />
+	</bean>
+
+	<!-- 定时时间，此处为30分钟执行一次 -->
+	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="jobDetail" />
+		<property name="cronExpression" value="0 */30 * * * ?" />
+	</bean>
+	<!-- <bean id="taskTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean"> <property name="jobDetail" ref="jobDetail" /> <property name="startDelay" value="10000" /> <property name="repeatInterval" value="60000" /> </bean> -->
+
+	<!-- 设置调度 -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="cronTrigger" />
+			</list>
+		</property>
+		<property name="taskExecutor" ref="executor" />
+	</bean>
+</beans>

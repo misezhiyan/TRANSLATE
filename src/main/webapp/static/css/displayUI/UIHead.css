@@ -1,0 +1,45 @@
+.uiHeadChoosed {
+	background: #8FBCBF; /*div背景颜色*/
+	color: #F00; /*字体颜色*/
+	width: 10px;
+	height: 20px;
+	word-break: keep-all; /* 不换行 */
+	white-space: nowrap; /* 不换行 */
+	overflow: hidden; /* 内容超出宽度时隐藏超出部分的内容 */
+	text-overflow: ellipsis;
+	word-break: keep-all; /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+
+.uiHeadUnChoosed {
+	background: #8FBCBF;
+	color: #000;
+	width: 10px;
+	height: 20px;
+	word-break: keep-all; /* 不换行 */
+	white-space: nowrap; /* 不换行 */
+	overflow: hidden; /* 内容超出宽度时隐藏超出部分的内容 */
+	text-overflow: ellipsis;
+	word-break: keep-all; /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+
+[uiHead] {
+	width: 500px !important;
+	display: table;
+	overflow: hidden !important;
+}
+
+[uiHead]>div {
+	width: 100px;
+	display: table-row;
+}
+
+[uiHead]>div>div {
+	display: table-cell;
+	vertical-align: middle;
+	border: 1px solid #000;
+	width: 10px;
+}
+
+.mouseOn {
+	border: none !important;
+}

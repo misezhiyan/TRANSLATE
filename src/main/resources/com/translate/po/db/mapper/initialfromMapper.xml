@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.translate.po.db.mapper.initialfromMapper">
+
+	<select id="selectById" parameterType="com.translate.po.db.Initialfrom" resultType="com.translate.po.db.Initialfrom">
+	SELECT 
+		id,
+		url,
+		name,
+		updateBy,
+		updateDate,
+		createBy,
+		createDate
+	WHERE id = #{id}
+	</select>
+
+	<update id="updateById" parameterType="com.translate.po.db.Initialfrom">
+	UPDATE initialfrom
+	SET 
+		id = #{id:INTEGER},
+		url = #{url:VARCHAR},
+		name = #{name:VARCHAR},
+		updateBy = #{updateBy:INTEGER},
+		updateDate = #{updateDate:TIMESTAMP},
+		createBy = #{createBy:INTEGER},
+		createDate = #{createDate:TIMESTAMP}
+	</update>
+
+	<insert id="save" parameterType="com.translate.po.db.Initialfrom">
+	INSERT INTO initialfrom (
+		id,
+		url,
+		name,
+		updateBy,
+		updateDate,
+		createBy,
+		createDate
+	)VALUES (
+		#{id:INTEGER},
+		#{url:VARCHAR},
+		#{name:VARCHAR},
+		#{updateBy:INTEGER},
+		#{updateDate:TIMESTAMP},
+		#{createBy:INTEGER},
+		#{createDate:TIMESTAMP}
+	)
+	</insert>
+
+
+</mapper>

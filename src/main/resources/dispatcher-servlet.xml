@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<bean id="handlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/translate/test.do">translateController</prop>
+				<prop key="/translate/ajaxFileContent.do">translateController</prop>
+				<prop key="/translate/contentInitial.do">translateController</prop>
+				<prop key="/translate/translateSentense.do">translateController</prop>
+				<prop key="/translate/ajaxPhaseTranslate.do">translateController</prop>
+				<prop key="/translate/phaseSplitToSentenseListAjax.do">translateController</prop>
+				
+				<prop key="/file/fileDownLoad.do">fileController</prop>
+				
+			</props>
+		</property>
+	</bean>
+
+	<!-- 文件控制器 -->
+	<bean id="fileController" class="com.translate.controller.FileController">
+		<property name="methodNameResolver">
+			<bean class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+				<property name="mappings">
+					<props>
+						<prop key="/file/fileDownLoad.do">fileDownLoad</prop>
+					</props>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	<!-- 翻译控制器 -->
+	<bean id="translateController" class="com.translate.controller.TranslateController">
+		<property name="methodNameResolver">
+			<bean class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+				<property name="mappings">
+					<props>
+						<prop key="/translate/test.do">test</prop>
+						<prop key="/translate/ajaxFileContent.do">ajaxFileContent</prop>
+						<prop key="/translate/contentInitial.do">contentInitial</prop>
+						<prop key="/translate/translateSentense.do">translateSentense</prop>
+						<prop key="/translate/ajaxPhaseTranslate.do">ajaxPhaseTranslate</prop>
+						<prop key="/translate/phaseSplitToSentenseListAjax.do">phaseSplitToSentenseListAjax</prop>
+					</props>
+				</property>
+			</bean>
+		</property>
+		<property name="translateService" ref="translateService" />
+	</bean>
+	<!-- <bean id="fileUploadController" class="com.translate.controller.FileUploadController"> <property name="methodNameResolver"> <bean class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver"> <property name="mappings"> <props> <prop key="/fileUpload/fileUploadAnalyze.do">fileUploadAnalyze</prop> </props> </property> </bean> </property> </bean> -->
+
+	<!-- 文件上传 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8"></property>
+		<property name="maxUploadSize" value="10485760000"></property>
+		<property name="maxInMemorySize" value="40960"></property>
+	</bean>
+
+	<!-- 跨域 -->
+	<!-- <mvc:cors> <mvc:mapping path="/**" allowed-origins="*" allow-credentials="true" max-age="1800" allowed-methods="GET,POST,OPTIONS" /> </mvc:cors> -->
+
+	<!-- 定义跳转的文件的前后缀 ，视图模式配置 -->
+	<bean id="defaultViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 这里的配置我的理解是自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 -->
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+		<property name="contentType" value="text/html" />
+		<property name="prefix" value="/jsp" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+</beans>

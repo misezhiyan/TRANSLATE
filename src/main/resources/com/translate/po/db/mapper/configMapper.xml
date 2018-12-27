@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.translate.po.mapper.configMapper">
+
+	<select id="selectById" parameterType="com.translate.po.db.Config" resultType="com.translate.po.db.Config">
+	SELECT 
+		id,
+		kind,
+		kindcode,
+		name,
+		code,
+		createBy,
+		createDate,
+		updateBy,
+		updateDate
+	WHERE id = #{id}
+	</select>
+
+	<update id="updateById" parameterType="com.translate.po.db.Config">
+	UPDATE config
+	SET 
+		id = #{id:INTEGER},
+		kind = #{kind:VARCHAR},
+		kindcode = #{kindcode:VARCHAR},
+		name = #{name:VARCHAR},
+		code = #{code:VARCHAR},
+		createBy = #{createBy:INTEGER},
+		createDate = #{createDate:TIMESTAMP},
+		updateBy = #{updateBy:INTEGER},
+		updateDate = #{updateDate:TIMESTAMP}
+	</update>
+
+	<insert id="save" parameterType="com.translate.po.db.Config">
+	INSERT INTO config (
+		id,
+		kind,
+		kindcode,
+		name,
+		code,
+		createBy,
+		createDate,
+		updateBy,
+		updateDate
+	)VALUES (
+		#{id:INTEGER},
+		#{kind:VARCHAR},
+		#{kindcode:VARCHAR},
+		#{name:VARCHAR},
+		#{code:VARCHAR},
+		#{createBy:INTEGER},
+		#{createDate:TIMESTAMP},
+		#{updateBy:INTEGER},
+		#{updateDate:TIMESTAMP}
+	)
+	</insert>
+
+
+</mapper>

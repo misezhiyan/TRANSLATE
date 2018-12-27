@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.translate.po.db.mapper.sentense_resMapper">
+
+	<select id="selectById" parameterType="com.translate.po.db.Sentense_res" resultType="com.translate.po.db.Sentense_res">
+	SELECT 
+		id,
+		src,
+		result,
+		from,
+		to,
+		initFrom,
+		belongTo,
+		updateBy,
+		updateDate,
+		createBy,
+		createDate
+	WHERE id = #{id}
+	</select>
+
+	<update id="updateById" parameterType="com.translate.po.db.Sentense_res">
+	UPDATE sentense_res
+	SET 
+		id = #{id:INTEGER},
+		src = #{src:INTEGER},
+		result = #{result:VARCHAR},
+		from = #{from:INTEGER},
+		to = #{to:INTEGER},
+		initFrom = #{initFrom:INTEGER},
+		belongTo = #{belongTo:INTEGER},
+		updateBy = #{updateBy:INTEGER},
+		updateDate = #{updateDate:TIMESTAMP},
+		createBy = #{createBy:INTEGER},
+		createDate = #{createDate:TIMESTAMP}
+	</update>
+
+	<insert id="save" parameterType="com.translate.po.db.Sentense_res">
+	INSERT INTO sentense_res (
+		id,
+		src,
+		result,
+		from,
+		to,
+		initFrom,
+		belongTo,
+		updateBy,
+		updateDate,
+		createBy,
+		createDate
+	)VALUES (
+		#{id:INTEGER},
+		#{src:INTEGER},
+		#{result:VARCHAR},
+		#{from:INTEGER},
+		#{to:INTEGER},
+		#{initFrom:INTEGER},
+		#{belongTo:INTEGER},
+		#{updateBy:INTEGER},
+		#{updateDate:TIMESTAMP},
+		#{createBy:INTEGER},
+		#{createDate:TIMESTAMP}
+	)
+	</insert>
+
+
+</mapper>

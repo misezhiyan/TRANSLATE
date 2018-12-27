@@ -1,0 +1,10 @@
+包
+base:				基础路径
+floatwindow:		漂浮窗
+rightmenu:			右键菜单功能
+accelerators:		快捷键
+punctuation:		标点符号
+displayUI:			界面
+hidemask:			界面不可用蒙版
+range:				光标事件			==http://localhost:8020/TRANSLATE/jsp/range/range.jsp
+windowposition:		窗口位置相关

@@ -1,0 +1,71 @@
+CREATE TABLE `initialfrom` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `url` varchar(200) DEFAULT NULL COMMENT '初始化路径',
+  `name` varchar(32) DEFAULT NULL COMMENT '初始化名称',
+  `updateBy` int(11) DEFAULT NULL COMMENT '修改人',
+  `updateDate` datetime DEFAULT NULL COMMENT '修改日期',
+  `createBy` int(11) DEFAULT NULL COMMENT '创建人',
+  `createDate` datetime DEFAULT NULL COMMENT '创建日期',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='初始化来源配置'
+
+CREATE TABLE `sentense_res` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `src` int(11) DEFAULT NULL COMMENT '原文ID',
+  `result` varchar(8000) DEFAULT NULL COMMENT '译文',
+  `from` int(11) DEFAULT NULL COMMENT '翻译语言-从',
+  `to` int(11) DEFAULT NULL COMMENT '翻译语言-到',
+  `initFrom` int(11) DEFAULT NULL COMMENT '初始化来源',
+  `belongTo` int(11) DEFAULT NULL COMMENT '所属人',
+  `updateBy` int(11) DEFAULT NULL COMMENT '修改时间',
+  `updateDate` datetime DEFAULT NULL COMMENT '修改人',
+  `createBy` int(11) DEFAULT NULL COMMENT '创建人',
+  `createDate` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='句子翻译'
+
+CREATE TABLE `sentense_src` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `src` varchar(8000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '原文',
+  `createBy` int(11) DEFAULT NULL COMMENT '创建人',
+  `createDate` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='句子翻译--原文'
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) DEFAULT NULL COMMENT '姓名',
+  `createBy` int(11) DEFAULT NULL COMMENT '创建人',
+  `createDate` datetime DEFAULT NULL,
+  `updateBy` int(11) DEFAULT NULL COMMENT '修改人',
+  `updateDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户'
+
+CREATE TABLE `word_res` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `src` int(11) DEFAULT NULL COMMENT '原文ID',
+  `result` varchar(8000) DEFAULT NULL COMMENT '译文',
+  `from` int(11) DEFAULT NULL COMMENT '翻译语言-从',
+  `to` int(11) DEFAULT NULL COMMENT '翻译语言-到',
+  `initFrom` int(11) DEFAULT NULL COMMENT '初始化来源',
+  `belongTo` int(11) DEFAULT NULL COMMENT '所属人',
+  `updateBy` int(11) DEFAULT NULL COMMENT '修改时间',
+  `updateDate` datetime DEFAULT NULL COMMENT '修改人',
+  `createBy` int(11) DEFAULT NULL COMMENT '创建人',
+  `createDate` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='单词翻译'
+
+CREATE TABLE `config` (
+  `id` int(11) NOT NULL,
+  `kind` varchar(3) DEFAULT NULL COMMENT '配置类型',
+  `kindcode` varchar(8) DEFAULT NULL COMMENT '配置类型码',
+  `name` varchar(20) DEFAULT NULL COMMENT '配置名称',
+  `code` varchar(5) DEFAULT NULL COMMENT '配置码',
+  `createBy` int(11) DEFAULT NULL COMMENT '创建人',
+  `createDate` datetime DEFAULT NULL,
+  `updateBy` int(11) DEFAULT NULL COMMENT '修改人',
+  `updateDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='配置'

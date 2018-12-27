@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.translate.po.db.mapper.word_srcMapper">
+
+	<select id="selectById" parameterType="com.translate.po.db.Word_src" resultType="com.translate.po.db.Word_src">
+	SELECT 
+		id,
+		src,
+		createBy,
+		createDate
+	WHERE id = #{id}
+	</select>
+
+	<update id="updateById" parameterType="com.translate.po.db.Word_src">
+	UPDATE word_src
+	SET 
+		id = #{id:INTEGER},
+		src = #{src:VARCHAR},
+		createBy = #{createBy:INTEGER},
+		createDate = #{createDate:TIMESTAMP}
+	</update>
+
+	<insert id="save" parameterType="com.translate.po.db.Word_src">
+	INSERT INTO word_src (
+		id,
+		src,
+		createBy,
+		createDate
+	)VALUES (
+		#{id:INTEGER},
+		#{src:VARCHAR},
+		#{createBy:INTEGER},
+		#{createDate:TIMESTAMP}
+	)
+	</insert>
+
+
+</mapper>

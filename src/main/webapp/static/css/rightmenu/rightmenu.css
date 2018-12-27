@@ -1,0 +1,26 @@
+.menu {
+	width: 140px;
+	background-color: #1E90FF;
+	display: block;
+	position: absolute;
+	/*display: none*/
+}
+
+.menu>div {
+	display: table;
+	width: 100%;
+}
+
+.menu>div>div {
+	display: table-row;
+	width: 100%;
+}
+
+.menu_row_over {
+	background-color: #9E1FCF;
+}
+
+.articleListOne {
+	font-size: 20px;
+	border: 1px solid #1E90FF
+}

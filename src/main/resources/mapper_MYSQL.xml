@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+		<setting name="cacheEnabled" value="true" />
+		<setting name="lazyLoadingEnabled" value="true" />
+		<setting name="aggressiveLazyLoading" value="true" />
+		<setting name="multipleResultSetsEnabled" value="true" />
+		<setting name="useColumnLabel" value="true" />
+		<setting name="useGeneratedKeys" value="false" />
+		<setting name="autoMappingBehavior" value="PARTIAL" />
+		<setting name="defaultExecutorType" value="SIMPLE" />
+		<setting name="defaultStatementTimeout" value="25000" />
+	</settings>
+
+	<mappers>
+		<mapper resource="com/translate/po/db/mapper/translateMapper.xml" />
+		
+		<mapper resource="com/translate/po/db/mapper/configMapper.xml" />
+		<mapper resource="com/translate/po/db/mapper/initialfromMapper.xml" />
+		<mapper resource="com/translate/po/db/mapper/sentense_resMapper.xml" />
+		<mapper resource="com/translate/po/db/mapper/sentense_srcMapper.xml" />
+		<mapper resource="com/translate/po/db/mapper/userMapper.xml" />
+		<mapper resource="com/translate/po/db/mapper/word_resMapper.xml" />
+		<mapper resource="com/translate/po/db/mapper/word_srcMapper.xml" />
+	</mappers>
+
+</configuration>

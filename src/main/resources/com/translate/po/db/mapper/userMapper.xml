@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.translate.po.db.mapper.userMapper">
+
+	<select id="selectById" parameterType="com.translate.po.db.User" resultType="com.translate.po.db.User">
+	SELECT 
+		id,
+		name,
+		createBy,
+		createDate,
+		updateBy,
+		updateDate
+	WHERE id = #{id}
+	</select>
+
+	<update id="updateById" parameterType="com.translate.po.db.User">
+	UPDATE user
+	SET 
+		id = #{id:INTEGER},
+		name = #{name:VARCHAR},
+		createBy = #{createBy:INTEGER},
+		createDate = #{createDate:TIMESTAMP},
+		updateBy = #{updateBy:INTEGER},
+		updateDate = #{updateDate:TIMESTAMP}
+	</update>
+
+	<insert id="save" parameterType="com.translate.po.db.User">
+	INSERT INTO user (
+		id,
+		name,
+		createBy,
+		createDate,
+		updateBy,
+		updateDate
+	)VALUES (
+		#{id:INTEGER},
+		#{name:VARCHAR},
+		#{createBy:INTEGER},
+		#{createDate:TIMESTAMP},
+		#{updateBy:INTEGER},
+		#{updateDate:TIMESTAMP}
+	)
+	</insert>
+
+
+</mapper>

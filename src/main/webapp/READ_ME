@@ -1,0 +1,5 @@
+prepare:		预备技术
+
+
+页面直接加载选中图片:				http://localhost:8020/TRANSLATE/prepare/%E9%A1%B5%E9%9D%A2%E7%9B%B4%E6%8E%A5%E5%8A%A0%E8%BD%BD%E9%80%89%E4%B8%AD%E5%9B%BE%E7%89%87.jsp
+XMLHttpRequest=post=文件下载:		http://localhost:8020/TRANSLATE/prepare/XMLHttpRequest=post=%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD.jsp

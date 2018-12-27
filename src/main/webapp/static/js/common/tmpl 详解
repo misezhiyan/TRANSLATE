@@ -1,0 +1,216 @@
+1.{{each}} 提供循环逻辑，$value访问迭代变量 也可以自定义迭代变量(i,value)
+2.{{if }} {{else}}提供了分支逻辑 {{else}} 相当于else if
+3.{{html}} 输出变量html,但是没有html编码，适合输出html代码
+4.{{tmpl}} 嵌套模版
+5.{{wrap}},包装器
+6.$data $item $item代表当前的模板；$data代表当前的数据。
+7.$.tmplItem()方法，使用这个方法，可以获取从render出来的元素上重新获取$item
+
+
+
+
+
+1.{{each}} 提供循环逻辑，$value访问迭代变量 也可以自定义迭代变量(i,value)
+<script id="each" type="text/x-jquery-tmpl"> 
+    <h3>users</h3>
+    {{each(i,user) users}}
+        <div>${i+1}:{{= user.name}}</div>
+        {{if i==0}}
+            <h4>group</h4>
+            {{each(j,group) groups}}
+                <div>${group.name}</div>
+            {{/each}}
+        {{/if}}
+    {{/each}}
+    <h3>depart</h3>
+    {{each departs}}
+        <div>{{= $value.name}}</div>
+    {{/each}}
+</script> 
+<script type="text/javascript">
+　　var eachData = {
+	'users': [{
+			'name': 'jerry'
+		}, {
+			'name': 'john'
+		}
+	],
+	'groups': [{
+			'name': 'mingdao'
+		}, {
+			'name': 'meihua'
+		}, {
+			'name': 'test'
+		}
+	],
+	'departs': [{
+			'name': 'IT'
+
+		}
+	]
+};
+
+　　$("#each").tmpl(eachData).appendTo('#div_each');
+</script>
+
+
+2.{{if }} {{else}}提供了分支逻辑 {{else}} 相当于else if
+<script id="ifelse" type="text/x-jquery-tmpl"> 
+    <div style="margin-bottom:10px;"><span>${ID}</span><span style="margin-left:10px;">{{= Name}}</span>
+        {{if Status}}
+            <span>Status${Status}</span>
+        {{else App}}
+            <span>App${App}</span>
+        {{else}}
+            <span>None</span>
+        {{/if}}
+    </div>
+</script> 
+<script type="text/javascript">
+　　var users = [{
+		'ID': 'think8848',
+		'Name': 'Joseph Chan',
+		'Status': 1,
+		'App': 0
+	}, {
+		'ID': 'aCloud',
+		'Name': 'Mary Cheung',
+		'App': 1
+	}, {
+		'ID': 'bMingdao',
+		'Name': 'Jerry Jin'
+	}
+];
+
+    $("#ifelse").tmpl(users).appendTo('#div_ifelse');
+</script>
+
+
+3.{{html}} 输出变量html,但是没有html编码，适合输出html代码
+<script id="html" type="text/x-jquery-tmpl"> 
+    <div style="margin-bottom:10px;">
+　　　　<span>${ID}</span>
+　　　　<span style="margin-left:10px;">{{= Name}}</span>
+    　　${html}
+    　　{{html html}}
+    </div>
+</script> 
+<script type="text/javascript">
+　　var user = {
+	'ID': 'think8848',
+	'Name': 'Joseph Chan',
+	'html': '<button>html</button>'
+};
+
+  　$("#html").tmpl(user).appendTo('#div_html');
+</script>
+
+
+
+4.{{tmpl}} 嵌套模版
+<div id="tmpl"></div>
+<script id="tmpl1" type="text/x-jquery-tmpl">
+    <div style="margin-bottom:10px;">
+    　　<span>${ID}</span>
+    　　<span style="margin-left:10px;">{{tmpl($data) '#tmpl2'}}</span>
+    </div>     
+</script>
+<script id="tmpl2" type="type/x-jquery-tmpl">
+    {{each Name}}${$value}  {{/each}}   
+</script>
+<script type="text/javascript">
+　　var users = [{
+		'ID': 'think8848',
+		'Name': [' Joseph ', ' Chan ']
+	}, {
+		' ID ': ' aCloud ',
+		' Name ': [' Mary ', ' Cheung ']
+	}
+];
+
+   $("#tmpl1").tmpl(users).appendTo('#tmpl');
+</script>
+
+
+
+5.{{wrap}},包装器
+<div id="wrapDemo">
+    </div>
+<script id="myTmpl" type="text/x-jquery-tmpl">
+    The following wraps and reorders some HTML content:
+    {{wrap "#tableWrapper"}}
+        <h3>One</h3>
+        <div>
+            First <b>content</b>
+        </div>
+        <h3>Two</h3>
+        <div>
+            And <em>more</em> <b>content</b>...
+        </div>
+    {{/wrap}}
+    </script>
+<script id="tableWrapper" type="text/x-jquery-tmpl">
+    <table cellspacing="0" cellpadding="3" border="1"><tbody>
+        <tr>
+            {{each $item.html("h3", true)}}
+                <td>
+                    ${$value}
+                </td>
+            {{/each}}
+        </tr>
+        <tr>
+            {{each $item.html("div")}}
+                <td>
+                    {{html $value}}
+                </td>
+            {{/each}}
+        </tr>
+    </tbody></table>
+    </script>
+ <script type="text/javascript">
+        $(function () {
+            $('#myTmpl').tmpl().appendTo('#wrapDemo');
+        });
+    </script>
+    
+    
+    
+    
+ 6.$data $item $item代表当前的模板；$data代表当前的数据。
+ <div id="div_item_data"></div>
+<script id="item_data" type="text/x-jquery-tmpl"> 
+     <div style="margin-bottom:10px;">
+　　　　<span>${$data.ID}</span>
+　　　　<span style="margin-left:10px;">${$item.getName(" ")}</span>
+　　　</div>
+</script> 
+<script type="text/javascript">
+ 　　var users = [{
+		'ID': 'think8848',
+		'Name': ['Joseph', 'Chan']
+	}, {
+		'ID': 'aCloud',
+		'Name': ['Mary', 'Cheung']
+	}
+];
+ 
+     $("#item_data").tmpl(users,
+                {
+                getName: function (spr) {
+                   return this.data.Name.join(spr);
+                }
+                }).appendTo('#div_item_data');
+</script>
+
+
+
+7.$.tmplItem()方法，使用这个方法，可以获取从render出来的元素上重新获取$item
+<script type="text/javascript">
+　　$('#demo').delegate('div', 'click', function () {
+                var item = $.tmplItem(this);
+                alert(item.data.Name);
+            });
+</script>
+
+
+

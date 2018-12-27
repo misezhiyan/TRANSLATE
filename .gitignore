@@ -1,0 +1,6 @@
+#运行文件
+.target
+/target/
+
+#数据文件
+/src/main/resources/database.properties
