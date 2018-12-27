@@ -167,7 +167,7 @@ var UIManager = (function($, win) {
 				// div包装一个文件名,一个input
 				var articalDiv = document.createElement('div');
 				$(articalDiv).html(content.fileName);
-				$(articalDiv).attr('contentid', content.contentid);
+				$(articalDiv).attr('articalid', content.contentid);
 				// 单个文件鼠标悬浮
 				articalDiv.onmouseover = function() {
 					$(this).addClass('articleListOne');
@@ -178,7 +178,7 @@ var UIManager = (function($, win) {
 
 				// 定义菜单
 				var fileListMenu = rightMenuBusinessManager.fileListMenu;
-				$(articalDiv).bindrightmenu($('[menuspinner]'), fileListMenu, true);
+				$(articalDiv).bindrightmenu($('[menuspinner]'), fileListMenu, '[articalid=' + content.contentid + ']', true, true);
 
 				// 单个div添加到单次div
 				$(articalDiv).appendTo($(articalsOneTimeDiv));
@@ -267,6 +267,9 @@ var UIManager = (function($, win) {
 		},
 		// 使用UI界面
 		useUIBody : function(uiType, content, elementDisplay) {
+
+			elementDisplay = elementDisplay || $('#file_content_div')[0];
+
 			// 外层包装div
 			var contentid = content.contentid;
 			var contentDiv = $(elementDisplay).find('[contentid=' + contentid + ']');
@@ -444,7 +447,13 @@ var UIManager = (function($, win) {
 		// 重新加载原文--单篇文章
 		reLoadOnSource_oneContent : function(contentId) {
 
-			return this.contentMap.getContentById(contentId);
+			// 获取文章内容
+			var content = this.getContentById(contentId);
+			// 清空界面
+			var contentElement = $('#file_content_div').find('[contentid=' + contentId + ']');
+			contentElement.html('');
+			// 切换到原文面板
+			this.sourceUI.useUI(content, contentElement);
 		}
 	}
 

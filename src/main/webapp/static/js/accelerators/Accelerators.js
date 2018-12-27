@@ -52,9 +52,9 @@ var Accelerators = (function($, win) {
 					event.returnValue = false;// 禁用浏览器默认快捷键功能
 				}
 
-				// ctrl + "空格" 或 F3 菜单, 切换操作类型
-				if ((e.ctrlKey && e.which == 32) || e.which == 114) {
-					alert(1);
+				// ctrl + "Enter" 或 F3 菜单, 切换操作类型
+				if ((e.ctrlKey && e.which == 13) || e.which == 114) {
+					console.log(1);
 					var usingUI = uiManager.changeUI();
 					acceleratorsManager.changeAcceleratorByUI(usingUI);
 					event.stopPropagation();// 阻止事件冒泡
@@ -75,6 +75,7 @@ var Accelerators = (function($, win) {
 				}
 				// ctrl + "向右箭头" F4 切换当前操作文章到下一篇文章
 				if ((e.ctrlKey && e.which == 39) || e.which == 115) {
+					alert(1);
 					var nextContentId = uiManager.changeOperatingContentNext();
 					var uiType = uiManager.contentUIType(nextContentId);
 					// 切换操作类型界面
@@ -193,8 +194,8 @@ var Accelerators = (function($, win) {
 						e.stopPropagation();// 阻止事件冒泡
 						event.returnValue = false;// 禁用浏览器默认快捷键功能
 					}
-					// ctrl + "空格" 或 F3 菜单, 切换操作类型
-					if ((e.ctrlKey && e.which == 32) || e.which == 114) {
+					// ctrl + "Enter" 或 F3 菜单, 切换操作类型
+					if ((e.ctrlKey && e.which == 13) || e.which == 114) {
 						var usingUI = uiManager.changeUI();
 						// 切换操作类型界面
 						acceleratorsManager.changeAcceleratorByUI(usingUI);
@@ -202,7 +203,7 @@ var Accelerators = (function($, win) {
 						event.returnValue = false;// 禁用浏览器默认快捷键功能
 						event.keyCode = 0;
 					}
-					// ctrl + "向右箭头" 或者 F4 切换当前操作文章到上一篇文章
+					// ctrl + "向左箭头" 或者 F4 切换当前操作文章到上一篇文章
 					if ((e.ctrlKey && e.which == 37) || (e.shiftKey && e.which == 115)) {
 						var lastContentId = uiManager.changeOperatingContentLast();
 						var uiType = uiManager.contentUIType(lastContentId);
@@ -251,12 +252,12 @@ var Accelerators = (function($, win) {
 						e.stopPropagation();// 阻止事件冒泡
 						event.returnValue = false;// 禁用浏览器默认快捷键功能
 					}
-					// ctrl + "ENTER" 切换操作界面类型
-					if (e.ctrlKey && e.which == 13) {
-						uiManager.changePhaseComposition();
-						e.stopPropagation();// 阻止事件冒泡
-						event.returnValue = false;// 禁用浏览器默认快捷键功能
-					}
+					// // ctrl + "ENTER" 切换操作界面类型
+					// if (e.ctrlKey && e.which == 13) {
+					// uiManager.changePhaseComposition();
+					// e.stopPropagation();// 阻止事件冒泡
+					// event.returnValue = false;// 禁用浏览器默认快捷键功能
+					// }
 					// ctrl + "S" 保存正在操作文章
 					if (e.ctrlKey && e.which == 83) {
 						uiManager.saveCurrentContent();

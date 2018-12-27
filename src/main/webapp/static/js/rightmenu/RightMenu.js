@@ -38,7 +38,7 @@ var RightMenu = (function($, win) {
 			})
 		}
 		// 3.在 当前对象 上右键展示菜单 menu_JQElement(JQuery对象)
-		$.fn.bindrightmenu = function(menuSpinnerElementJQ, menuElement, ifScrollHide, ifWindowResizeHide) {
+		$.fn.bindrightmenu = function(menuSpinnerElementJQ, menuElement, bindElementFlag, ifScrollHide, ifWindowResizeHide, ifKeepClass) {
 
 			// 菜单面板重置
 			menuSpinnerElementJQ.html();
@@ -53,6 +53,16 @@ var RightMenu = (function($, win) {
 					aevent = window.event; // 解决兼容性
 				if (aevent.button == 2) { // 当事件属性button的值为2时，表用户按下了右键
 
+					// // 保持class
+					// if (undefined == ifKeepClass || ifKeepClass) {
+					// var classsName = $(this).attr('class');
+					// var classsName_parent = $(this).parent().attr('class');
+					//						
+					// }
+
+					// 指定绑定元素
+					menuSpinnerElementJQ.attr('bindElementFlag', bindElementFlag);
+
 					// 默认点击右键事件处理函数
 					// 将菜单相对 鼠标定位
 					menuSpinnerElementJQ.css("position", "absolute");
@@ -64,6 +74,14 @@ var RightMenu = (function($, win) {
 					menuSpinnerElementJQ.focus();
 					// aevent.returnValue = false; // 对IE 中断 默认点击右键事件处理函数
 					// aevent.preventDefault(); // 对标准DOM 中断
+
+					// // 保持class
+					// if (undefined == ifKeepClass || ifKeepClass) {
+					// var classsName = $(this).attr('class');
+					// var classsName_parent = $(this).parent().attr('class');
+					// console.log(classsName);
+					// console.log(classsName_parent);
+					// }
 
 					// 滚动页面关闭菜单(默认值:true)
 					if (ifScrollHide)
@@ -97,6 +115,7 @@ var RightMenu = (function($, win) {
 				return this.createMenuSpinner(menuList);
 			}
 		},
+		// 创建右键菜单面板
 		createMenuSpinner : function(menuList) {
 			// 初始化层级
 			this.level = 0;
@@ -156,11 +175,12 @@ var RightMenu = (function($, win) {
 				} else {
 					$(rightMenuSpinner).text(text);
 					$(rightMenuSpinner).on('click', function() {
+
 						var menuSpinner = $(this).parent().parent();
 						$(menuSpinner).hide();
-						var funcin = $(menuSpinner).attr('funcin');
-						fun(funcin);
-						$(menuSpinner).removeAttr('funcin');
+						var bindElementFlag = $(menuSpinner).attr('bindElementFlag');
+						fun(bindElementFlag);
+						$(menuSpinner).removeAttr('bindElementFlag');
 					});
 				}
 				// 鼠标悬浮

@@ -45,7 +45,7 @@ var RightMenuBusinessManager = (function($, win) {
 				},
 				error : function(returndata) {
 				}
-			});
+			})
 
 			var sentenseSize = sentenseJsonArr.length;
 
@@ -55,8 +55,18 @@ var RightMenuBusinessManager = (function($, win) {
 		testMenu2 : function() {
 			alert('testMenu2');
 		},
-		reLoadOnSourceOneContent : function() {
-			alert('reLoadOnSourceOneContent');
+		// 重新加载原文--单篇
+		reLoadOnSourceOneContent : function(bindElementFlag) {
+			var bindElement = $(bindElementFlag);
+			if (bindElement.length < 1)
+				return;
+			var contentid = bindElement.attr('articalid');
+			// 重新加载文章
+			uiManager.reLoadOnSourceOneContent(contentid);
+			// 切换快捷键
+			accelerators.useAcceleratorCommon();
+
+			alert('加载完成!');
 		}
 	}
 
@@ -82,10 +92,13 @@ var RightMenuBusinessManager = (function($, win) {
 
 		// 漂浮窗==文件列表右键菜单
 		fileListMenuList : [ {
-			'text' : '重新加载原文(单篇文章)',
+			'text' : '重新加载原文(单篇)',
 			'fun' : menuFunction.reLoadOnSourceOneContent,
 		}, {
-			'text' : '关闭翻译界面',
+			'text' : '重新加载原文(单次)',
+			'fun' : menuFunction.testMenu2,
+		}, {
+			'text' : '关闭文章(单次)',
 			'fun' : menuFunction.testMenu2,
 		} ]
 	}
