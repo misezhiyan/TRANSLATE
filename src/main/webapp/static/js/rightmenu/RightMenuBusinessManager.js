@@ -52,9 +52,6 @@ var RightMenuBusinessManager = (function($, win) {
 			// 调用蒙版, 编辑原文
 			hidemask.showHideMask($('[hidemask]'), operatebox);
 		},
-		testMenu2 : function() {
-			alert('testMenu2');
-		},
 		// 重新加载原文--单篇
 		reLoadOnSourceOneContent : function(bindElementFlag) {
 			var bindElement = $(bindElementFlag);
@@ -67,6 +64,47 @@ var RightMenuBusinessManager = (function($, win) {
 			accelerators.useAcceleratorCommon();
 
 			alert('加载完成!');
+		},
+		// 重新加载原文--单次
+		reLoadOnSourceOneSubmit : function(bindElementFlag) {
+			var bindElement = $(bindElementFlag);
+			if (bindElement.length < 1)
+				return;
+			var oneSubmitElement = bindElement.parent();
+			oneSubmitElement.children().each(function() {
+				// 文章id
+				var contentid = $(this).attr('articalid');
+				// 重新加载文章
+				if (undefined != contentid)
+					uiManager.reLoadOnSourceOneContent(contentid);
+			});
+			// 切换快捷键
+			accelerators.useAcceleratorCommon();
+
+			alert('加载完成!');
+		},
+		// 关闭文章(单篇)
+		closeSourceOneContent : function(bindElementFlag) {
+			alert('closeSourceOneContent');
+			var bindElement = $(bindElementFlag);
+			var contentid = $(this).attr('bindElement');
+			uiManager.closeSourceOneContent(contentid);
+		},
+		// 关闭文章(单次)
+		closeSourceOneSubmit : function(bindElementFlag) {
+			alert('closeSourceOneSubmit');
+			var bindElement = $(bindElementFlag);
+			if (bindElement.length < 1)
+				return;
+			var oneSubmitElement = bindElement.parent();
+			oneSubmitElement.children().each(function() {
+
+				uiManager.closeSourceOneSubmit(contentid);
+			})
+		},
+		// 待使用
+		testMenu2 : function() {
+			alert('testMenu2');
 		}
 	}
 
@@ -96,10 +134,13 @@ var RightMenuBusinessManager = (function($, win) {
 			'fun' : menuFunction.reLoadOnSourceOneContent,
 		}, {
 			'text' : '重新加载原文(单次)',
-			'fun' : menuFunction.testMenu2,
+			'fun' : menuFunction.reLoadOnSourceOneSubmit,
+		}, {
+			'text' : '关闭文章(单篇)',
+			'fun' : menuFunction.closeSourceOneContent,
 		}, {
 			'text' : '关闭文章(单次)',
-			'fun' : menuFunction.testMenu2,
+			'fun' : menuFunction.closeSourceOneSubmit,
 		} ]
 	}
 

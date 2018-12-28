@@ -54,7 +54,6 @@ var Accelerators = (function($, win) {
 
 				// ctrl + "Enter" 或 F3 菜单, 切换操作类型
 				if ((e.ctrlKey && e.which == 13) || e.which == 114) {
-					console.log(1);
 					var usingUI = uiManager.changeUI();
 					acceleratorsManager.changeAcceleratorByUI(usingUI);
 					event.stopPropagation();// 阻止事件冒泡
@@ -75,7 +74,6 @@ var Accelerators = (function($, win) {
 				}
 				// ctrl + "向右箭头" F4 切换当前操作文章到下一篇文章
 				if ((e.ctrlKey && e.which == 39) || e.which == 115) {
-					alert(1);
 					var nextContentId = uiManager.changeOperatingContentNext();
 					var uiType = uiManager.contentUIType(nextContentId);
 					// 切换操作类型界面

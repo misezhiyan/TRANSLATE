@@ -54,10 +54,11 @@ var RightMenu = (function($, win) {
 				if (aevent.button == 2) { // 当事件属性button的值为2时，表用户按下了右键
 
 					// // 保持class
+					// var className;
+					// var className_parent;
 					// if (undefined == ifKeepClass || ifKeepClass) {
-					// var classsName = $(this).attr('class');
-					// var classsName_parent = $(this).parent().attr('class');
-					//						
+					// className = $(this).attr('class');
+					// className_parent = $(this).parent().attr('class');
 					// }
 
 					// 指定绑定元素
@@ -74,13 +75,13 @@ var RightMenu = (function($, win) {
 					menuSpinnerElementJQ.focus();
 					// aevent.returnValue = false; // 对IE 中断 默认点击右键事件处理函数
 					// aevent.preventDefault(); // 对标准DOM 中断
-
+					// console.log(this);
+					// console.log(getEventListeners);
+					// console.log(getEventListeners(this).mouseover);
 					// // 保持class
 					// if (undefined == ifKeepClass || ifKeepClass) {
-					// var classsName = $(this).attr('class');
-					// var classsName_parent = $(this).parent().attr('class');
-					// console.log(classsName);
-					// console.log(classsName_parent);
+					// $(this).addClass(className);
+					// $(this).parent().attr(className_parent);
 					// }
 
 					// 滚动页面关闭菜单(默认值:true)
