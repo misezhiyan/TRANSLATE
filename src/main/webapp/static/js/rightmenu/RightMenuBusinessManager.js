@@ -84,14 +84,21 @@ var RightMenuBusinessManager = (function($, win) {
 			alert('加载完成!');
 		},
 		// 关闭文章(单篇)
-		closeSourceOneContent : function(bindElementFlag) {
-			alert('closeSourceOneContent');
+		closeOneContent : function(bindElementFlag) {
 			var bindElement = $(bindElementFlag);
-			var contentid = $(this).attr('bindElement');
-			uiManager.closeSourceOneContent(contentid);
+			var contentid = $(bindElement).attr('articalid');
+			uiManager.closeOneContent(contentid);
+			uiManager.showOneAfterClose();
+
+			console.log(bindElement[0]);
+			// 文件列表右键菜单禁用
+			$(bindElement).unbindrightmenu();
+			$(bindElement).addClass('articleDead');
+			$(bindElement).unbind('mouseover');
+			$(bindElement).unbind('mouseout');
 		},
 		// 关闭文章(单次)
-		closeSourceOneSubmit : function(bindElementFlag) {
+		closeOneSubmit : function(bindElementFlag) {
 			alert('closeSourceOneSubmit');
 			var bindElement = $(bindElementFlag);
 			if (bindElement.length < 1)
@@ -99,7 +106,7 @@ var RightMenuBusinessManager = (function($, win) {
 			var oneSubmitElement = bindElement.parent();
 			oneSubmitElement.children().each(function() {
 
-				uiManager.closeSourceOneSubmit(contentid);
+				uiManager.closeOneSubmit(contentid);
 			})
 		},
 		// 待使用
@@ -137,10 +144,10 @@ var RightMenuBusinessManager = (function($, win) {
 			'fun' : menuFunction.reLoadOnSourceOneSubmit,
 		}, {
 			'text' : '关闭文章(单篇)',
-			'fun' : menuFunction.closeSourceOneContent,
+			'fun' : menuFunction.closeOneContent,
 		}, {
 			'text' : '关闭文章(单次)',
-			'fun' : menuFunction.closeSourceOneSubmit,
+			'fun' : menuFunction.closeOneSubmit,
 		} ]
 	}
 

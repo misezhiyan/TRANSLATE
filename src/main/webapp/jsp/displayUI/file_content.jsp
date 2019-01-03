@@ -49,8 +49,6 @@
 	}
 	//重新加载原文--单篇文章
 	function reLoadOnSourceOneContent(contentId) {
-		alert(1);
-		return;
 		//容器
 		var fileInputListContainer = $('[fileInputList]');
 		//获取文章

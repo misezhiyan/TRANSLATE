@@ -87,6 +87,14 @@ var UIManager = (function($, win) {
 			this.reLoadOnSourceOneContent = function(contentId) {
 				return this.reLoadOnSource_oneContent(contentId);
 			}
+			// 关闭文章--单篇
+			this.closeOneContent = function(contentid) {
+				this.close_oneContent(contentid);
+			}
+			// 关闭文章之后, 确保一篇文章正在使用
+			this.showOneAfterClose = function() {
+				this.showOne_afterClose();
+			}
 		},
 		// 加载文章 ajax
 		loadOnContentAjax : function(fileInput) {
@@ -454,6 +462,29 @@ var UIManager = (function($, win) {
 			contentElement.html('');
 			// 切换到原文面板
 			this.sourceUI.useUI(content, contentElement);
+		},
+		// 关闭文章(单篇)
+		close_oneContent : function(contentid) {
+
+			// 删除文章内容缓存
+			this.deleteContentById(contentid);
+			// 关闭头
+			this.uiHead.closeContentHeadById(contentid);
+			// 关闭文章体
+			var contentElement = $('#file_content_div').find('[contentid=' + contentid + ']');
+			contentElement.remove();
+		},
+		// 删除文章内容
+		deleteContentById : function(contentid) {
+
+			this.contentMap.deleteContentById(contentid);
+		},
+		// 关闭文章后确保一篇文章正在使用
+		showOne_afterClose : function() {
+			var usingHeadElement = this.uiHead.usingHeadElement();
+			console.log(usingHeadElement[0]);
+			if (!usingHeadElement)
+				this.uiHead.useDefaultContent();
 		}
 	}
 

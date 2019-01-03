@@ -15,6 +15,18 @@ var UIHead = (function($, win) {
 			this.contentHeadName = function(usingContentId) {
 				return this.contentHead_name(usingContentId);
 			}
+			// 关闭文章头
+			this.closeContentHeadById = function(contentid) {
+				this.closeContentHead_byId(contentid);
+			}
+			// 正在使用文章头
+			this.usingHeadElement = function(contentid) {
+				return this.usingHead_element(contentid);
+			}
+			// 切换到默认文章
+			this.useDefaultContent = function() {
+				this.use_defaultContent();
+			}
 		},
 		// 转换操作界面
 		useContentUIHead : function(content, displayElement) {
@@ -102,6 +114,24 @@ var UIHead = (function($, win) {
 		// 关联文章头元素
 		contentHead_name : function(usingContentId) {
 			return $('[uihead]').find('[contenthead=' + usingContentId + ']').html();
+		},
+		// 关闭文章头元素
+		closeContentHead_byId : function(contentid) {
+			var contentHead = $('[uihead]').find('[contenthead=' + contentid + ']');
+			$(contentHead).remove();
+		},
+		// 获取正在使用文章头
+		usingHead_element : function() {
+			var contentHeadElement = $('[uihead]').find('.uiHeadChoosed');
+			return contentHeadElement;
+		},
+		// 切换到默认文章
+		use_defaultContent : function() {
+			alert(2);
+			var contentCount = $('[uihead]').find('[contenthead]').length;
+			alert(contentCount);
+			if (contentCount > 0)
+				$('[uihead]').find('[contenthead]')[0].click();
 		}
 	}
 

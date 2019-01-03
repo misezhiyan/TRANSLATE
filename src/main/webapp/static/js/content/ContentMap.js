@@ -48,6 +48,11 @@ var ContentMap = (function($, win) {
 			var content = this.contentMap.get(contentId);
 			return content;
 		},
+		// 通过id删除文章
+		deleteContentById : function(contentId) {
+
+			delete this.contentMap[contentId];
+		},
 		// java转html页面时, 特殊符号转换
 		matchHtmlContent : function(fileContent) {
 

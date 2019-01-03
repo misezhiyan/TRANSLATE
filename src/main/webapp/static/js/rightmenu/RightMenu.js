@@ -12,6 +12,7 @@ var RightMenu = (function($, win) {
 		// 1.元素定义为菜单
 		// 2.菜单失去焦点,关闭菜单
 		// 3.在 当前对象 上右键展示菜单 menu_JQElement(JQuery对象)
+		// 4.解绑对象上右键菜单
 
 		// 1.元素定义为菜单
 		$.fn.defineAsMenu = function(canCatchFocus) {
@@ -96,6 +97,19 @@ var RightMenu = (function($, win) {
 							if (menuSpinnerElementJQ.is(':visible'))
 								menuSpinnerElementJQ.hide();
 						}
+				}
+			}
+		}
+
+		// 4.解绑对象上右键菜单
+		$.fn.unbindrightmenu = function() {
+
+			this[0].onmouseup = function(aevent) {
+
+				if (window.event)
+					aevent = window.event; // 解决兼容性
+				if (aevent.button == 2) {
+
 				}
 			}
 		}
